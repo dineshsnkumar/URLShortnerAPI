@@ -1,12 +1,19 @@
 package io.projects.URLShortnerAPI.controllers;
 
-import io.projects.URLShortnerAPI.dao.URLShortnerRequest;
-import io.projects.URLShortnerAPI.dao.URLShortnerResponse;
+import io.projects.URLShortnerAPI.entities.URLShortnerRequest;
+import io.projects.URLShortnerAPI.entities.URLShortnerResponse;
+import io.projects.URLShortnerAPI.service.URLShortnerService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/shorten")
 public class URLShortnerController {
+
+    private final URLShortnerService urlShortnerService;
+
+    public URLShortnerController(URLShortnerService urlShortnerService) {
+        this.urlShortnerService = urlShortnerService;
+    }
 
     @PostMapping
     public URLShortnerResponse shortenURL(@RequestBody URLShortnerRequest url){

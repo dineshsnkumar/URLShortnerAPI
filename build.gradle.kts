@@ -22,7 +22,8 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-	implementation("org.springframework.boot:spring-boot-starter-data-cassandra")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+	implementation("commons-codec:commons-codec:1.15")
 }
 
 tasks.withType<Test> {

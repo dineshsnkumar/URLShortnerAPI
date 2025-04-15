@@ -1,22 +1,36 @@
-package io.projects.URLShortnerAPI.dao;
+package io.projects.URLShortnerAPI.entities;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
+@Document("URLShortner")
 public class URLShortnerResponse {
-    private int id;
+    @Id
+    private String id;
     private String url;
     private String shortCode;
     private Date createdAt;
     private Date updatedAt;
+    private int accessCount;
 
     public URLShortnerResponse() {
     }
 
-    public int getId() {
+    public URLShortnerResponse(String url, String shortCode, Date createdAt, Date updatedAt, int accessCount) {
+        this.url = url;
+        this.shortCode = shortCode;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.accessCount = accessCount;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -50,6 +64,14 @@ public class URLShortnerResponse {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public int getAccessCount() {
+        return accessCount;
+    }
+
+    public void setAccessCount(int accessCount) {
+        this.accessCount = accessCount;
     }
 
     @Override

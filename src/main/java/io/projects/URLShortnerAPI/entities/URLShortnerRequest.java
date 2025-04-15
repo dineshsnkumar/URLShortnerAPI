@@ -1,4 +1,4 @@
-package io.projects.URLShortnerAPI.dao;
+package io.projects.URLShortnerAPI.entities;
 
 public class URLShortnerRequest {
     private String url;
