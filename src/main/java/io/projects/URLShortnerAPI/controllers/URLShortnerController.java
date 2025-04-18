@@ -3,7 +3,7 @@ package io.projects.URLShortnerAPI.controllers;
 import io.projects.URLShortnerAPI.entities.URLShortnerRequest;
 import io.projects.URLShortnerAPI.entities.URLShortnerResponse;
 import io.projects.URLShortnerAPI.service.URLShortnerService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -19,22 +19,21 @@ public class URLShortnerController {
     }
 
     @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
     public URLShortnerResponse shortenURL(@RequestBody URLShortnerRequest url){
-        URLShortnerResponse response = new URLShortnerResponse();
-        response.setUrl(url.getUrl());
-        return response;
+        return urlShortnerService.saveUrl(url);
     }
+
     @GetMapping("/{shortCode}")
+    @ResponseStatus(code = HttpStatus.OK)
     public Optional<URLShortnerResponse> originalURL(@PathVariable String shortCode){
         return urlShortnerService.getURLByShortCode(shortCode);
     }
 
     @PutMapping("/{shortCode}")
+    @ResponseStatus(code = HttpStatus.OK)
     public URLShortnerResponse shortenUpdateURL(@PathVariable String shortCode, @RequestBody URLShortnerRequest url){
-        URLShortnerResponse response = new URLShortnerResponse();
-        response.setShortCode(shortCode);
-        response.setUrl(url.getUrl());
-        return response;
+        return urlShortnerService.updateUrl(url, shortCode);
     }
 
     @DeleteMapping("/{shortCode}")
